@@ -98,12 +98,12 @@ def ImportedUsersDetails():
 def checkImportStatus():
     y=ListImportJob()
     for x in y['UserImportJobs']:
-        if x['Status'] == 'Pending' or x['Status'] == 'InProgress':
-            time.sleep(10)
-            checkImportStatus()
         if x['Status'] == 'Failed' or x['Status'] == 'Succeeded':
             ImportedUsersDetails()
-            print("Import Suceed")     
+            print("Import Suceed")
+        else:
+            time.sleep(10)
+            checkImportStatus()              
 
 getUserDetails("UsersBeforeImport.json")  #get all existing users in cognito and write to file UsersBeforImport.json
 
